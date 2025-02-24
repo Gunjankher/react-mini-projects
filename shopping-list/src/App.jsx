@@ -22,6 +22,14 @@ setProducts(products.filter((item)=> item.product !== product))
 }
 
 
+const boughtToggle = (product)=>{
+setProducts(
+  products.map((item)=>(
+    item.product === product ?{...item, bought :!item.bought} : item
+  ))
+)
+}
+
 
   return (
     <>
@@ -43,8 +51,12 @@ onChange={(e)=>setProduct(e.target.value)}
 {
   products?.map((item,index)=>(
     <div key={index}>
-<span>{item.product}</span>
+<span style={{padding: "20px",
+                fontWeight: "bold",
+                color: "red",
+                textDecoration: item.bought ? "line-through" : "none",}}>{item.product}</span>
 <button onClick={()=>deleteProduct(item.product)} style={{margin :"20px"}}>delete</button>
+<button onClick={()=>boughtToggle(item.product)}>{item.bought? "unbought" :"bought"}</button>
     </div>
   ))
 }
