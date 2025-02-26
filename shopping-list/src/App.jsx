@@ -1,11 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
   const [product, setProduct] = useState('')
-  const [products, setProducts] = useState([])
+  const [products, setProducts] = useState(()=>{
+    return JSON.parse(localStorage.getItem('shoppingList')) || []
+  })
+
+
+useEffect(()=>{
+localStorage.setItem('shoppingList' , JSON.stringify(products))
+},[products])
 
 
 const addProduct = ()=>{
@@ -43,7 +50,7 @@ style={{padding:'10px' ,margin:'20px'}}
 onChange={(e)=>setProduct(e.target.value)}
 />
 
-<button onClick={()=> setProducts(addProduct)}>add Product</button>
+<button onClick={addProduct}>add Product</button>
 
 
 
