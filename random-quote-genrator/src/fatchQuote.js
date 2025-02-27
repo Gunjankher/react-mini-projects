@@ -13,8 +13,8 @@ export const fetchQuote = async()=>{
 try {
     const response = await fetch(url,options)
     const data  = await response.json()
+    // console.log(`fetch data`,data);
     return data
-    console.log(`fetch data`,data);
       
   } catch (error) {
       console.error(err)
