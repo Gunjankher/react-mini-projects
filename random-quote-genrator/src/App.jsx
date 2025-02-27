@@ -5,6 +5,7 @@ import { fetchQuote } from './fatchQuote'
 function App() {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true);
+  const [isLooping, setIsLooping] = useState(false)
 
 
 
@@ -30,20 +31,22 @@ const genrateData = ()=>{
 
 
 
-// useEffect(()=>{
-//   getData()
-// },[])
+
   
 
 useEffect(() => {
-  getData(); // Initial fetch
-  const intervalId = setInterval(() => {
-    console.log("Fetching data...");
-    getData(); // Auto-fetch every 5s
-  }, 5000); // 5000ms = 5s
- console.log("Cleaning up interval")
-  return () => clearInterval(intervalId); // Cleanup
-}, []); 
+  getData()
+  let intervalId
+  if(isLooping){
+    getData()
+    setIsLooping(true)
+    intervalId = setInterval (()=> getData(),5000)
+  }
+
+  return ()=>{
+    if(intervalId) clearInterval(intervalId)
+  }
+}, [isLooping]); 
 
 
   return (
@@ -59,6 +62,7 @@ useEffect(() => {
       </div>
      ))}</div>
      <button onClick={genrateData} style={{margin:'30px'}}>Generate</button>
+     <button onClick={()=> setIsLooping(!isLooping)} style={{margin : "10px"}}>{isLooping ? 'stop-loop' : 'start-loop'}</button>
     </>
   )
 }
