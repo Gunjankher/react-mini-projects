@@ -4,16 +4,18 @@ import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState('')
 
 const clear = ()=>{
   setCount(0)
 }
 
+const onHandleClick = (e)=>{
+  setCount((prev)=> prev+e.target.innerText)
+}
 
-// const handleNumberClick =()=>{
 
-// }
+
 
   return (
     <>
@@ -21,37 +23,41 @@ const clear = ()=>{
 
 <div>
    <div>
-    {count}
+   <input
+  value={count}
+  readOnly
+  />
    </div>
 
 <div>
+ 
   <button onClick={clear}>AC</button>
   <button>/</button>
   <button>%</button>
   <button>/</button>
 </div>
 <div>
-  <button onClick={(e)=>setCount(e.target.value)}>7</button>
-  <button>8</button>
-  <button>9</button>
-  <button>*</button>
+  <button onClick={onHandleClick} >7</button>
+  <button onClick={onHandleClick} >8</button>
+  <button onClick={onHandleClick} >9</button>
+  <button onClick={onHandleClick}>*</button>
 </div>
 <div>
-  <button>4</button>
-  <button>5</button>
-  <button>6</button>
-  <button>-</button>
+  <button onClick={onHandleClick}>4</button>
+  <button onClick={onHandleClick}>5</button>
+  <button onClick={onHandleClick}>6</button>
+  <button onClick={onHandleClick}>-</button>
 </div>
 <div>
-  <button>1</button>
-  <button>2</button>
-  <button>3</button>
-  <button>+</button>
+  <button onClick={onHandleClick}>1</button>
+  <button onClick={onHandleClick}>2</button>
+  <button onClick={onHandleClick}>3</button>
+  <button onClick={onHandleClick}>+</button>
 </div>
 <div>
-  <button>0</button>
-  <button>,</button>
-  <button>=</button>
+  <button onClick={onHandleClick}>0</button>
+  <button onClick={onHandleClick}>,</button>
+  <button onClick={onHandleClick}>=</button>
 </div>
 
 
