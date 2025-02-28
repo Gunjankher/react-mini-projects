@@ -29,8 +29,11 @@ const genrateData = ()=>{
 }
 
 
-
-
+const addToFavorites = () => {
+  if (data && !favorites.some((fav) => fav.id === data.id)) {
+    setFavorites([...favorites, data]);
+  }
+};
 
   
 
