@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState('');
+  const [count, setCount] = useState("");
 
   // Clear input field
   const clear = () => {
-    setCount('');
+    setCount("");
   };
 
   // Handle number and operator clicks
@@ -14,7 +14,10 @@ function App() {
     const value = e.target.innerText;
 
     // Prevent multiple consecutive operators
-    if (["+", "-", "*", "/", "%"].includes(value) && count.slice(-1).match(/[+\-*/%]/)) {
+    if (
+      ["+", "-", "*", "/", "%"].includes(value) &&
+      count.slice(-1).match(/[+\-*/%]/)
+    ) {
       return;
     }
 
@@ -36,7 +39,7 @@ function App() {
     <>
       <h1>Calculator</h1>
 
-      <div >
+      <div>
         <div>
           <input value={count} readOnly />
         </div>
