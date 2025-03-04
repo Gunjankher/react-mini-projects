@@ -9,7 +9,8 @@ const clear = ()=>{
 }
 
 const onHandleClick = (e)=>{
-  setCount((prev)=> prev+e.target.innerText)
+const value = e.target.vlaue
+setCount((prev)=> prev+value)
 }
 
 
