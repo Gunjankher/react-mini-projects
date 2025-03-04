@@ -36,7 +36,7 @@ function App() {
     <>
       <h1>Calculator</h1>
 
-      <div>
+      <div >
         <div>
           <input value={count} readOnly />
         </div>
