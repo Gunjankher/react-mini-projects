@@ -1,72 +1,77 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState('')
+  const [count, setCount] = useState('');
 
-const clear = ()=>{
-  setCount('')
-}
+  // Clear input field
+  const clear = () => {
+    setCount('');
+  };
 
-const onHandleClick = (e)=>{
-const value = e.target?.innerText
-setCount((prev)=> prev+value)
-console.log(e.target);
+  // Handle number and operator clicks
+  const onHandleClick = (e) => {
+    const value = e.target.innerText;
 
-}
+    // Prevent multiple consecutive operators
+    if (["+", "-", "*", "/", "%"].includes(value) && count.slice(-1).match(/[+\-*/%]/)) {
+      return;
+    }
 
+    setCount((prev) => prev + value);
+  };
 
-
+  // Calculate the result
+  const result = (e) => {
+    if (e.target.innerText === "=") {
+      try {
+        setCount(eval(count).toString()); // Calculate expression
+      } catch (error) {
+        setCount("Error"); // Handle invalid expressions
+      }
+    }
+  };
 
   return (
     <>
-     <h1>Calculator</h1>
+      <h1>Calculator</h1>
 
-<div>
-   <div>
-   <input
-  value={count}
-  readOnly
-  />
-   </div>
+      <div>
+        <div>
+          <input value={count} readOnly />
+        </div>
 
-<div>
- 
-  <button onClick={clear}>AC</button>
-  <button>/</button>
-  <button>%</button>
-  <button>/</button>
-</div>
-<div>
-  <button onClick={onHandleClick}>7</button>
-  <button onClick={onHandleClick}>8</button>
-  <button onClick={onHandleClick}>9</button>
-  <button onClick={onHandleClick}>*</button>
-</div>
-<div>
-  <button onClick={onHandleClick}>4</button>
-  <button onClick={onHandleClick}>5</button>
-  <button onClick={onHandleClick}>6</button>
-  <button onClick={onHandleClick}>-</button>
-</div>
-<div>
-  <button onClick={onHandleClick}>1</button>
-  <button onClick={onHandleClick}>2</button>
-  <button onClick={onHandleClick}>3</button>
-  <button onClick={onHandleClick}>+</button>
-</div>
-<div>
-  <button onClick={onHandleClick}>0</button>
-  <button onClick={onHandleClick}>,</button>
-  <button onClick={onHandleClick}>=</button>
-</div>
-
-
-
-</div>
-
+        <div>
+          <button onClick={clear}>AC</button>
+          <button onClick={onHandleClick}>/</button>
+          <button onClick={onHandleClick}>%</button>
+          <button onClick={onHandleClick}>*</button>
+        </div>
+        <div>
+          <button onClick={onHandleClick}>7</button>
+          <button onClick={onHandleClick}>8</button>
+          <button onClick={onHandleClick}>9</button>
+          <button onClick={onHandleClick}>-</button>
+        </div>
+        <div>
+          <button onClick={onHandleClick}>4</button>
+          <button onClick={onHandleClick}>5</button>
+          <button onClick={onHandleClick}>6</button>
+          <button onClick={onHandleClick}>+</button>
+        </div>
+        <div>
+          <button onClick={onHandleClick}>1</button>
+          <button onClick={onHandleClick}>2</button>
+          <button onClick={onHandleClick}>3</button>
+        </div>
+        <div>
+          <button onClick={onHandleClick}>0</button>
+          <button onClick={onHandleClick}>.</button>
+          <button onClick={result}>=</button>
+        </div>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
