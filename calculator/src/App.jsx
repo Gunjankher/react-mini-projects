@@ -5,7 +5,7 @@ function App() {
   const [count, setCount] = useState('')
 
 const clear = ()=>{
-  setCount(0)
+  setCount('')
 }
 
 const onHandleClick = (e)=>{
