@@ -9,8 +9,10 @@ const clear = ()=>{
 }
 
 const onHandleClick = (e)=>{
-const value = e.target.vlaue
+const value = e.target?.innerText
 setCount((prev)=> prev+value)
+console.log(e.target);
+
 }
 
 
@@ -36,9 +38,9 @@ setCount((prev)=> prev+value)
   <button>/</button>
 </div>
 <div>
-  <button onClick={onHandleClick} >7</button>
-  <button onClick={onHandleClick} >8</button>
-  <button onClick={onHandleClick} >9</button>
+  <button onClick={onHandleClick}>7</button>
+  <button onClick={onHandleClick}>8</button>
+  <button onClick={onHandleClick}>9</button>
   <button onClick={onHandleClick}>*</button>
 </div>
 <div>
