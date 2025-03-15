@@ -15,6 +15,6 @@ export const taskContext  = createContext({
 
 export const TaskProvider = taskContext.Provider
 
-export const useTaks = ()=> useContext(taskContext)
+export const useTasks = ()=> useContext(taskContext)
 
 
